@@ -15,11 +15,7 @@ DATA_PATH = "data1.json"
 
 
 def load_data(data_path):
-    """Loads training dataset from json file.
-        :param data_path (str): Path to json file containing data
-        :return X (ndarray): Inputs
-        :return y (ndarray): Targets
-    """
+ 
 
     with open(data_path, "r") as fp:
         data = json.load(fp)
@@ -29,17 +25,6 @@ def load_data(data_path):
     return X, y
 
 def prepare_datasets(test_size, validation_size):
-    """Loads data and splits it into train, validation and test sets.
-    :param test_size (float): Value in [0, 1] indicating percentage of data set to allocate to test split
-    :param validation_size (float): Value in [0, 1] indicating percentage of train set to allocate to validation split
-    :return X_train (ndarray): Input training set
-    :return X_validation (ndarray): Input validation set
-    :return X_test (ndarray): Input test set
-    :return y_train (ndarray): Target training set
-    :return y_validation (ndarray): Target validation set
-    :return y_test (ndarray): Target test set
-    """
-
     # load data
     X, y = load_data(DATA_PATH)
 
@@ -56,10 +41,6 @@ def prepare_datasets(test_size, validation_size):
 
 
 def build_model(input_shape):
-    """Generates CNN model
-    :param input_shape (tuple): Shape of input set
-    :return model: CNN model
-    """
 
     # build network topology
     model = keras.Sequential()
@@ -91,11 +72,6 @@ def build_model(input_shape):
 
 
 def predict(model, X, y):
-    """Predict a single sample using the trained model
-    :param model: Trained classifier
-    :param X: Input data
-    :param y (int): Target
-    """
 
     # add a dimension to input data for sample - model.predict() expects a 4d array in this case
     X = X[np.newaxis, ...] # array shape (1, 130, 13, 1)
